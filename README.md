@@ -17,3 +17,5 @@ This is a Windows screen saver that scrolls text like the opening scene of Star 
 
 * Only works on a single monitor
 * Preview in screen saver dialog does not work
+* There is a 90 second window for the scroll before it repeats.
+    * This translates to roughly 17 lines in a Word document.
