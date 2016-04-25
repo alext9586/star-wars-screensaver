@@ -17,4 +17,3 @@ This is a Windows screen saver that scrolls text like the opening scene of Star 
 
 * Only works on a single monitor
 * Preview in screen saver dialog does not work
-* Mouse move does not close screen saver
