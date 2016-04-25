@@ -10,8 +10,8 @@ This is a Windows screen saver that scrolls text like the opening scene of Star 
 ### How do I install? ###
 
 * Create a "Release" build.
-* Rename the *.exe to *.scr
-* Right click on *.scr file and select "Install"
+* Rename the extension from EXE to SCR
+* Right click on the SCR file and select "Install"
 
 ### Known Issues ###
 
