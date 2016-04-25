@@ -53,7 +53,8 @@ namespace StarWarsScreenSaver
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            //Application.Current.Shutdown();
+            // This immediately exits the app for some reason even though there wasn't a mouse move.
+            //this.Close();
         }
 
         private void Window_MouseUp(object sender, MouseButtonEventArgs e)

@@ -33,7 +33,7 @@ namespace StarWarsScreenSaver
 
         public string Load()
         {
-            string settings = string.Empty;
+            string settings = String.Empty;
 
             try
             {
@@ -41,12 +41,9 @@ namespace StarWarsScreenSaver
                 TextReader reader = new StreamReader(fs);
                 settings = reader.ReadToEnd();
             }
-            catch
-            {
-                settings = string.Empty;
-            }
+            catch { }
 
-            return settings;
+            return string.IsNullOrWhiteSpace(settings) ? "No text has been saved via settings dialog. This message will repeat in 90 seconds. Press ESC to exit." : settings;
         }
     }
 }
