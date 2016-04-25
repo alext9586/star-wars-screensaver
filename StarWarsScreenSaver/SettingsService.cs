@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+using Microsoft.Win32;
+
+// Reference: https://stuff.seans.com/2008/09/01/writing-a-screen-saver-in-wpf/
 
 namespace StarWarsScreenSaver
 {
@@ -23,10 +21,10 @@ namespace StarWarsScreenSaver
         {
             try
             {
-                FileStream fs = new FileStream(_settingsFilePath, FileMode.OpenOrCreate);
-                TextWriter writer = new StreamWriter(fs, new UTF8Encoding());
-                writer.Write(message);
-                writer.Close();
+                // Create or get existing Registry subkey
+                RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\StarWarsScreenSaver");
+
+                key.SetValue("message", message);
             }
             catch { }
         }
@@ -37,9 +35,10 @@ namespace StarWarsScreenSaver
 
             try
             {
-                FileStream fs = new FileStream(_settingsFilePath, FileMode.OpenOrCreate);
-                TextReader reader = new StreamReader(fs);
-                settings = reader.ReadToEnd();
+                // Get the value stored in the Registry
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\StarWarsScreenSaver");
+                if (key != null)
+                    settings = (string)key.GetValue("message");
             }
             catch { }
 

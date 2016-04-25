@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Interop;
+﻿using System.Windows;
 
+// Reference: https://stuff.seans.com/2008/09/01/writing-a-screen-saver-in-wpf/
+//            https://social.msdn.microsoft.com/Forums/vstudio/en-US/62650892-44b7-4b85-9518-5a664572d48b/screensaver-does-not-work-properly-on-windows-8?forum=wpf
 namespace StarWarsScreenSaver
 {
     /// <summary>
@@ -14,8 +9,6 @@ namespace StarWarsScreenSaver
     /// </summary>
     public partial class App : Application
     {
-        private MainWindow window;
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             // Preview mode--display in little window in Screen Saver dialog
@@ -23,7 +16,8 @@ namespace StarWarsScreenSaver
             // normal /s mode).
             if (e.Args[0].ToLower().StartsWith("/p"))
             {
-                // do nothing
+                // do nothing. it's hard.
+                Application.Current.Shutdown();
             }
 
             // Normal screensaver mode.  Either screen saver kicked in normally,
