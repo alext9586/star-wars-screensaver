@@ -1,9 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
 // Star Wars text effect source: http://stackoverflow.com/questions/3157341/starwars-text-effect-in-wpf
 // Reference: https://stuff.seans.com/2008/09/01/writing-a-screen-saver-in-wpf/
+//            http://www.harding.edu/fmccown/screensaver/screensaver.html
 
 namespace StarWarsScreenSaver
 {
@@ -15,6 +17,8 @@ namespace StarWarsScreenSaver
         public event PropertyChangedEventHandler PropertyChanged;
         private SettingsService settingsService = new SettingsService();
         private string _message;
+        private Point _mouseLocation;
+        private bool _isActive;
 
         public string ScrollText
         {
@@ -40,8 +44,20 @@ namespace StarWarsScreenSaver
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            // This immediately exits the app for some reason even though there wasn't a mouse move.
-            //this.Close();
+            Point position = e.MouseDevice.GetPosition(this);
+
+            if (!_isActive)
+            {
+                _mouseLocation = position;
+                _isActive = true;
+            }
+            else
+            {
+                if (Math.Abs(_mouseLocation.X - position.X) > 20 || Math.Abs(_mouseLocation.Y - position.Y) > 20)
+                {
+                    this.Close();
+                }
+            }
         }
 
         private void Window_MouseUp(object sender, MouseButtonEventArgs e)
