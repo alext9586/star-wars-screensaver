@@ -8,13 +8,8 @@ namespace StarWarsScreenSaver
 {
     public class SettingsService
     {
-        private const string SettingsFile = "swss.xml";
-        private string _settingsFilePath = string.Empty;
-
         public SettingsService()
         {
-            string userPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            _settingsFilePath = Path.Combine(userPath, SettingsFile);
         }
 
         public void Save(string message)
@@ -23,7 +18,6 @@ namespace StarWarsScreenSaver
             {
                 // Create or get existing Registry subkey
                 RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\StarWarsScreenSaver");
-
                 key.SetValue("message", message);
             }
             catch { }
